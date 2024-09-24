@@ -1,0 +1,14 @@
+name: Running it on Schedule
+
+
+on:
+    schedule:
+        - cron: '1 * * * *'
+
+jobs:
+    my-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "print current time"
+              run: |
+                    echo "The current time is  $(date)"
