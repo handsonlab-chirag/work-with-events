@@ -1,0 +1,23 @@
+name: my multi events worflow
+
+
+on: 
+    push:
+        branches:
+            - main
+            - mybranch
+    pull_request:
+        branches:
+            - main
+
+
+jobs:
+    my-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Some information"
+              run: |
+                    echo "I am running this job"
+                    echo "reference: $GITHUB_REF"
+                    echo "Github Job: $GITHUB_JOB"
+                    echo "Github Job2: $GITHUB_job"
