@@ -3,7 +3,7 @@ name: Running it on Schedule
 
 on:
     schedule:
-        - cron: '1 * * * *'
+        - cron: '*/1 * * * *'
 
 jobs:
     my-job:
