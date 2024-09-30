@@ -1,0 +1,27 @@
+name: Deployment Workflow
+
+# Trigger workflow on a deployment event
+on:
+  deployment:
+  deployment_status:
+
+jobs:
+  deploy:
+    name: Handle Deployment
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run deployment scripts
+        run: |
+          echo "Deployment triggered."
+          echo "Running deployment steps for environment: ${{ github.event.deployment.environment }}"
+          
+          # Simulate running a deployment script based on environment
+          if [ "${{ github.event.deployment.environment }}" == "production" ]; then
+            echo "Deploying to Production!"
+          else
+            echo "Deploying to ${{ github.event.deployment.environment }}"
+          fi
