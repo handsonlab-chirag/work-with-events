@@ -1,0 +1,19 @@
+{
+    "name": "github-actions-nodejs",
+    "version": "1.0.0",
+    "description": "A simple Node.js project for GitHub Actions CI example",
+    "main": "index.js",
+    "scripts": {
+      "build": "echo 'Building project...' && mkdir -p dist && echo 'Build complete.' > dist/build.txt",
+      "lint": "eslint .",
+      "test": "jest"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "eslint": "^8.39.0",
+      "jest": "^29.6.0"
+    },
+    "author": "Chirag Pareek",
+    "license": "MIT"
+  }
+  
