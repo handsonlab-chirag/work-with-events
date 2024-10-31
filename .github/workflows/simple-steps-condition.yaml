@@ -1,0 +1,33 @@
+name: Conditional Steps Workflow
+
+on: 
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build on main branch only                # Conditional step
+        if: github.ref == 'refs/heads/main'               # Runs only on main branch
+        run: npm run build
+
+      - name: Run linter on push events only               # Another conditional step
+        if: github.event_name == 'push'                   # Runs only on push events
+        run: npm run lint
