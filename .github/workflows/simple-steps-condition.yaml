@@ -22,3 +22,7 @@ jobs:
         run: |
             echo Add other actions to build,
             echo test, and deploy your project.
+
+      - name: Run a multi-line script
+        run: |
+            echo test from all the branches
