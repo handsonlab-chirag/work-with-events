@@ -1,0 +1,18 @@
+# .github/workflows/windows-self-hosted.yml
+name: Windows Self-Hosted Runner Example
+
+on:
+  push:
+    branches:
+      - main  # Run this workflow on pushes to the main branch
+
+jobs:
+  run_powershell_command:
+    runs-on: [self-hosted, Windows]  # Specify self-hosted Windows runner
+
+    steps:
+      - name: Run PowerShell Command
+        run: |
+           Write-Output "Hello, World!"  # Output "Hello, World!" in PowerShell
+        shell: powershell  # Specify PowerShell as the shell
+
