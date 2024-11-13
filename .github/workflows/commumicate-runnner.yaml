@@ -28,3 +28,11 @@ jobs:
       - name: Access Output
         run: |
             echo "The output from the previous step is: ${{ steps.example_step.outputs.myOutput }}"
+
+# Creating Annotations for Warnings and Errors
+
+      - name: Log Warning
+        run: echo "::warning file=example.txt,line=10::This is a warning message"
+
+      - name: Log Error
+        run: echo "::error file=example.txt,line=15::This is an error message"
