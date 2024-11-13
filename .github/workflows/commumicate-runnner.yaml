@@ -19,3 +19,12 @@ jobs:
       - name: Print Environment Variable
         run: |
           echo "The value of MY_ENV_VAR is: $MY_ENV_VAR"
+    
+# Set output and access the output
+
+      - name: Generate Output
+        id: example_step  # Assigns an ID to this step to access its output
+        run: echo "myOutput=This is an output message" >> $GITHUB_OUTPUT
+      - name: Access Output
+        run: |
+            echo "The output from the previous step is: ${{ steps.example_step.outputs.myOutput }}"
