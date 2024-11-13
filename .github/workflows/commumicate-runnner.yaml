@@ -36,3 +36,16 @@ jobs:
 
       - name: Log Error
         run: echo "::error file=example.txt,line=15::This is an error message"
+
+
+#  Grouping Log Output
+
+      - name: Grouped Logs
+        run: |
+            echo "::group::Starting a grouped log"
+            echo "Log line 1"
+            echo "Log line 2"
+            echo "::endgroup::"
+
+      - name: Ungrouped Log
+        run: echo "This log is not in the group"
