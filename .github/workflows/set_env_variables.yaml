@@ -1,0 +1,29 @@
+
+name: Mixed Environment Variables
+
+
+on: 
+    push:
+      branches: 
+        - main
+
+jobs:
+  mixed-env:
+    runs-on: ubuntu-latest
+
+    env:
+      STATIC_VAR: "This is static"
+
+    steps:
+      - name: Set Dynamic Variable
+        run: |
+            if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+                echo "DYNAMIC_VAR=production(set dynamically)" >> $GITHUB_ENV
+            else
+                echo "DYNAMIC_VAR=staging(set dynamically)" >> $GITHUB_ENV
+            fi
+
+      - name: Use Variables
+        run: |
+          echo "STATIC_VAR: $STATIC_VAR"
+          echo "DYNAMIC_VAR: $DYNAMIC_VAR"
