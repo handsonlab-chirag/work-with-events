@@ -1,0 +1,23 @@
+name: Default Environment Variables Example
+
+
+on: 
+    push:
+      branches: 
+        - main
+
+jobs:
+  print-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Repository Information
+        run: |
+          echo "Workflow Name: $GITHUB_WORKFLOW"
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF"
+          echo "Commit SHA: $GITHUB_SHA"
+          echo "Actor: $GITHUB_ACTOR"
+      - name: Print Runner Information
+        run: |
+          echo "Runner OS: $RUNNER_OS"
+          echo "Temporary Directory: $RUNNER_TEMP"
