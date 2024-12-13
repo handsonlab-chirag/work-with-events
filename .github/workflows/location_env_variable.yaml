@@ -1,0 +1,54 @@
+name: Mixed Environment Variables Example
+
+on: 
+    push:
+      branches: 
+        - main
+
+# 1. Global Environment Variables
+env:
+  GLOBAL_APP_NAME: MyGlobalApp
+  GLOBAL_ENV: production
+  TEST_ENV: "I AM Global"
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    
+    # 2. Job-Specific Environment Variables
+    env:
+      JOB_ENV: staging
+      JOB_API_URL: https://api.myapi.com
+      TEST_ENV: "I AM set at job level"
+
+    steps:
+      # Step 1: Using Global and Job-Specific Variables
+      - name: Print Global and Job Variables
+        run: |
+          echo "Global App Name: $GLOBAL_APP_NAME"
+          echo "Global Environment: $GLOBAL_ENV"
+          echo "Job Environment: $JOB_ENV"
+          echo "Job API URL: $JOB_API_URL"
+          echo "Output: $TEST_ENV"
+
+      # Step 2: Using Step-Specific Environment Variables
+      - name: Step with Custom Environment Variables
+        env:
+          STEP_VAR: step_specific_value
+          STEP_MESSAGE: "This is a step-specific variable."
+        run: |
+          echo "Step Variable: $STEP_VAR"
+          echo "Step Message: $STEP_MESSAGE"
+
+      # Step 3: Dynamically Setting Variables
+      - name: Set Dynamic Environment Variables
+        run: |
+          echo "DYNAMIC_VAR=dynamic_value" >> $GITHUB_ENV
+          echo "GREETING=Hello" >> $GITHUB_ENV
+          echo "TARGET=World" >> $GITHUB_ENV
+
+      # Step 4: Using Dynamic Environment Variables
+      - name: Use Dynamic Environment Variables
+        run: |
+          echo "Dynamic Variable: $DYNAMIC_VAR"
+          echo "$GREETING, $TARGET!"
